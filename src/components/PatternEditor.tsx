@@ -34,16 +34,7 @@ export function PatternEditor({
     >
       {/* Pattern Name */}
       <div style={{ marginBottom: 20 }}>
-        <label
-          style={{
-            fontSize: 12,
-            color: "rgba(255,255,255,0.5)",
-            display: "block",
-            marginBottom: 8,
-          }}
-        >
-          Pattern Name
-        </label>
+        <label className="editor-label">Pattern Name</label>
         <input
           type="text"
           className="input-field"
@@ -56,16 +47,7 @@ export function PatternEditor({
       {/* Box Pattern: Single Slider */}
       {pattern.type === "box" && (
         <div style={{ marginBottom: 24 }}>
-          <label
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.5)",
-              display: "block",
-              marginBottom: 8,
-            }}
-          >
-            Duration per Side
-          </label>
+          <label className="editor-label">Duration per Side</label>
           <BoxSlider
             value={pattern.boxDuration ?? 4}
             onChange={(val) =>
@@ -89,13 +71,7 @@ export function PatternEditor({
             gap: 8,
           }}
         >
-          <label
-            style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,0.5)",
-              marginBottom: 4,
-            }}
-          >
+          <label className="editor-label" style={{ marginBottom: 4 }}>
             Phase Durations
           </label>
           <DurationStepper
@@ -133,22 +109,22 @@ export function PatternEditor({
       <div
         style={{
           padding: 16,
-          background: "rgba(255,255,255,0.03)",
+          background: "var(--bg-card)",
           borderRadius: 12,
           marginBottom: 20,
           textAlign: "center",
         }}
       >
         <div
-          style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginBottom: 8 }}
+          style={{ fontSize: 12, color: "var(--text-dim)", marginBottom: 8 }}
         >
           Preview
         </div>
-        <div style={{ fontSize: 14, color: "#fff" }}>
+        <div style={{ fontSize: 14, color: "var(--text-primary)" }}>
           {pattern.durations.join(" - ")} seconds
         </div>
         <div
-          style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginTop: 4 }}
+          style={{ fontSize: 12, color: "var(--text-dim)", marginTop: 4 }}
         >
           Total cycle: {pattern.durations.reduce((a, b) => a + b, 0)}s
         </div>

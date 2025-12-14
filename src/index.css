@@ -29,6 +29,9 @@
   --border-light: rgba(255, 255, 255, 0.1);
   --border-active: rgba(125, 211, 192, 0.3);
 
+  /* Overlay/track colors */
+  --overlay-light: rgba(255, 255, 255, 0.2);
+
   /* Border radius */
   --radius-sm: 8px;
   --radius-md: 12px;

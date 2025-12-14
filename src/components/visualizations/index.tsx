@@ -20,16 +20,16 @@ export function BoxVisualization({ phase, progress }: VisualizationProps) {
         <filter id="glow"><feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         <linearGradient id="markerGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fff"/><stop offset="100%" stopColor={COLORS[phase]}/></linearGradient>
       </defs>
-      <rect x="20" y="20" width="200" height="200" rx="8" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2"/>
+      <rect x="20" y="20" width="200" height="200" rx="8" fill="none" stroke="var(--border-light)" strokeWidth="2"/>
       {[{x1:20,y1:20,x2:220,y2:20,i:0},{x1:220,y1:20,x2:220,y2:220,i:1},{x1:220,y1:220,x2:20,y2:220,i:2},{x1:20,y1:220,x2:20,y2:20,i:3}].map(({x1,y1,x2,y2,i})=>(
         <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={COLORS[i]} strokeWidth={phase===i?6:2} strokeLinecap="round" opacity={phase===i?1:0.3} style={{transition:'stroke-width 0.3s ease, opacity 0.3s ease'}}/>
       ))}
       <circle cx={marker.x} cy={marker.y} r="12" fill={COLORS[phase]} style={{filter:'url(#glow)', willChange:'cx,cy'}}/>
-      <circle cx={marker.x} cy={marker.y} r="6" fill="#fff" style={{willChange:'cx,cy'}}/>
-      <text x="120" y="14" textAnchor="middle" fill={phase===0?COLORS[0]:'rgba(255,255,255,0.3)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>IN</text>
-      <text x="230" y="124" textAnchor="middle" fill={phase===1?COLORS[1]:'rgba(255,255,255,0.3)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>HOLD</text>
-      <text x="120" y="236" textAnchor="middle" fill={phase===2?COLORS[2]:'rgba(255,255,255,0.3)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>OUT</text>
-      <text x="10" y="124" textAnchor="middle" fill={phase===3?COLORS[3]:'rgba(255,255,255,0.3)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>HOLD</text>
+      <circle cx={marker.x} cy={marker.y} r="6" fill="var(--text-primary)" style={{willChange:'cx,cy'}}/>
+      <text x="120" y="14" textAnchor="middle" fill={phase===0?COLORS[0]:'var(--text-dim)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>IN</text>
+      <text x="230" y="124" textAnchor="middle" fill={phase===1?COLORS[1]:'var(--text-dim)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>HOLD</text>
+      <text x="120" y="236" textAnchor="middle" fill={phase===2?COLORS[2]:'var(--text-dim)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>OUT</text>
+      <text x="10" y="124" textAnchor="middle" fill={phase===3?COLORS[3]:'var(--text-dim)'} fontSize="11" fontWeight="500" style={{transition:'fill 0.3s ease'}}>HOLD</text>
     </svg>
   );
 }
@@ -70,7 +70,7 @@ export function OrbitVisualization({ phase, progress, durations }: Visualization
         <path key={i} d={describeArc(start, sweep)} fill="none" stroke={COLORS[i]} strokeWidth={phase===i?8:4} opacity={phase===i?1:0.3} strokeLinecap="round" style={{transition:'stroke-width 0.3s ease, opacity 0.3s ease'}}/>
       ))}
       <circle cx={x} cy={y} r="14" fill={COLORS[phase]} style={{filter:'url(#glow2)', willChange:'cx,cy,fill'}}/>
-      <circle cx={x} cy={y} r="8" fill="#fff" style={{willChange:'cx,cy'}}/>
+      <circle cx={x} cy={y} r="8" fill="var(--text-primary)" style={{willChange:'cx,cy'}}/>
       <text x="120" y="125" textAnchor="middle" fill={COLORS[phase]} fontSize="16" fontWeight="500" style={{transition:'fill 0.3s ease'}}>{PHASES[phase].short}</text>
     </svg>
   );
@@ -88,7 +88,7 @@ export function BlobVisualization({ phase, progress }: VisualizationProps) {
   return (
     <div className="viz-container">
       <div style={{position:'relative',width:'80%',aspectRatio:'1'}}>
-        <div style={{position:'absolute',inset:0,borderRadius:'50%',border:'2px solid rgba(255,255,255,0.1)'}}/>
+        <div style={{position:'absolute',inset:0,borderRadius:'50%',border:'2px solid var(--border-light)'}}/>
         <div style={{
           position:'absolute',top:'50%',left:'50%',width:'100%',height:'100%',
           transform:`translate(-50%,-50%) scale(${scale})`,
@@ -116,7 +116,7 @@ export function BarVisualization({ phase, progress, durations }: VisualizationPr
 
   return (
     <div className="viz-container" style={{flexDirection:'column',gap:12}}>
-      <div style={{display:'flex',width:'100%',height:48,borderRadius:12,overflow:'hidden',background:'rgba(255,255,255,0.05)'}}>
+      <div style={{display:'flex',width:'100%',height:48,borderRadius:12,overflow:'hidden',background:'var(--bg-input)'}}>
         {widths.map((w, i) => (
           <div key={i} style={{width:`${w}%`,position:'relative',borderRight: i<3?'1px solid rgba(0,0,0,0.3)':'none'}}>
             <div style={{
@@ -127,7 +127,7 @@ export function BarVisualization({ phase, progress, durations }: VisualizationPr
               willChange: i === phase ? 'width' : 'auto',
               transition: 'opacity 0.3s ease',
             }}/>
-            <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,fontWeight:500,color: i <= phase ? '#fff' : 'rgba(255,255,255,0.3)',transition:'color 0.3s ease'}}>{PHASES[i].short}</div>
+            <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,fontWeight:500,color: i <= phase ? 'var(--text-primary)' : 'var(--text-dim)',transition:'color 0.3s ease'}}>{PHASES[i].short}</div>
           </div>
         ))}
       </div>
@@ -144,19 +144,19 @@ export function LadderVisualization({ phase, progress, durations }: Visualizatio
         <div key={i} style={{
           display:'flex',alignItems:'center',gap:12,
           padding:'12px 16px',borderRadius:12,
-          background: phase === i ? `${COLORS[i]}22` : 'rgba(255,255,255,0.03)',
+          background: phase === i ? `${COLORS[i]}22` : 'var(--bg-card)',
           border: phase === i ? `2px solid ${COLORS[i]}` : '2px solid transparent',
           transition:'background 0.3s ease, border-color 0.3s ease',
         }}>
-          <div style={{flex:1,fontWeight:phase===i?600:400,color:phase===i?COLORS[i]:'rgba(255,255,255,0.5)',transition:'color 0.3s ease, font-weight 0.3s ease'}}>{p.label}</div>
-          <div style={{width:80,height:6,background:'rgba(255,255,255,0.1)',borderRadius:3,overflow:'hidden'}}>
+          <div style={{flex:1,fontWeight:phase===i?600:400,color:phase===i?COLORS[i]:'var(--text-muted)',transition:'color 0.3s ease, font-weight 0.3s ease'}}>{p.label}</div>
+          <div style={{width:80,height:6,background:'var(--border-light)',borderRadius:3,overflow:'hidden'}}>
             <div style={{
               height:'100%',background:COLORS[i],borderRadius:3,
               width: i < phase ? '100%' : i === phase ? `${progress*100}%` : '0%',
               willChange: i === phase ? 'width' : 'auto',
             }}/>
           </div>
-          <div style={{width:24,fontSize:12,color:'rgba(255,255,255,0.4)',textAlign:'right'}}>{durations[i]}s</div>
+          <div style={{width:24,fontSize:12,color:'var(--text-dim)',textAlign:'right'}}>{durations[i]}s</div>
         </div>
       ))}
     </div>
@@ -184,16 +184,16 @@ export function TrapezoidVisualization({ phase, progress }: VisualizationProps) 
   return (
     <svg viewBox="0 0 240 240" className="viz-svg">
       <defs><filter id="glow3"><feGaussianBlur stdDeviation="4"/></filter></defs>
-      <polygon points="40,180 80,60 160,60 200,180" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2"/>
+      <polygon points="40,180 80,60 160,60 200,180" fill="none" stroke="var(--border-light)" strokeWidth="2"/>
       {segments.map(({x1,y1,x2,y2,i}) => (
         <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={COLORS[i]} strokeWidth={phase===i?6:2} opacity={phase===i?1:0.3} strokeLinecap="round" style={{transition:'stroke-width 0.3s ease, opacity 0.3s ease'}}/>
       ))}
       <circle cx={marker.x} cy={marker.y} r="12" fill={COLORS[phase]} style={{filter:'url(#glow3)', willChange:'cx,cy'}}/>
-      <circle cx={marker.x} cy={marker.y} r="6" fill="#fff" style={{willChange:'cx,cy'}}/>
-      <text x="45" y="130" fill={phase===0?COLORS[0]:'rgba(255,255,255,0.3)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>IN</text>
-      <text x="110" y="50" fill={phase===1?COLORS[1]:'rgba(255,255,255,0.3)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>HOLD</text>
-      <text x="185" y="130" fill={phase===2?COLORS[2]:'rgba(255,255,255,0.3)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>OUT</text>
-      <text x="110" y="198" fill={phase===3?COLORS[3]:'rgba(255,255,255,0.3)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>HOLD</text>
+      <circle cx={marker.x} cy={marker.y} r="6" fill="var(--text-primary)" style={{willChange:'cx,cy'}}/>
+      <text x="45" y="130" fill={phase===0?COLORS[0]:'var(--text-dim)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>IN</text>
+      <text x="110" y="50" fill={phase===1?COLORS[1]:'var(--text-dim)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>HOLD</text>
+      <text x="185" y="130" fill={phase===2?COLORS[2]:'var(--text-dim)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>OUT</text>
+      <text x="110" y="198" fill={phase===3?COLORS[3]:'var(--text-dim)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>HOLD</text>
     </svg>
   );
 }
@@ -305,7 +305,7 @@ export function RingVisualization({ phase, progress, durations }: VisualizationP
         <path d={describeArc(0, fillAngle, r)} fill="none" stroke={COLORS[phase]} strokeWidth="16" strokeLinecap="round" style={{filter:'url(#glow5)', willChange:'d', transition:'stroke 0.3s ease'}}/>
       )}
       <text x="120" y="110" textAnchor="middle" fill={COLORS[phase]} fontSize="14" fontWeight="500" style={{transition:'fill 0.3s ease'}}>{PHASES[phase].label}</text>
-      <text x="120" y="140" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="28" fontWeight="300">{Math.ceil(durations[phase] * (1 - progress))}s</text>
+      <text x="120" y="140" textAnchor="middle" fill="var(--text-muted)" fontSize="28" fontWeight="300">{Math.ceil(durations[phase] * (1 - progress))}s</text>
     </svg>
   );
 }
@@ -331,10 +331,10 @@ export function PathVisualization({ phase, progress, durations }: VisualizationP
         <line key={i} x1={x1} y1="60" x2={x2} y2="60" stroke={COLORS[i]} strokeWidth={phase===i?8:4} opacity={phase===i?1:0.4} strokeLinecap="round" style={{transition:'stroke-width 0.3s ease, opacity 0.3s ease'}}/>
       ))}
       {segments.map(({x1, x2, i}) => (
-        <text key={i} x={(x1+x2)/2} y="90" textAnchor="middle" fill={phase===i?COLORS[i]:'rgba(255,255,255,0.3)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>{PHASES[i].short}</text>
+        <text key={i} x={(x1+x2)/2} y="90" textAnchor="middle" fill={phase===i?COLORS[i]:'var(--text-dim)'} fontSize="10" style={{transition:'fill 0.3s ease'}}>{PHASES[i].short}</text>
       ))}
       <circle cx={markerX} cy="60" r="12" fill={COLORS[phase]} style={{filter:'url(#glow6)', willChange:'cx'}}/>
-      <circle cx={markerX} cy="60" r="6" fill="#fff" style={{willChange:'cx'}}/>
+      <circle cx={markerX} cy="60" r="6" fill="var(--text-primary)" style={{willChange:'cx'}}/>
     </svg>
   );
 }

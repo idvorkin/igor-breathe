@@ -16,13 +16,7 @@ export interface Pattern {
   boxDuration?: number;
 }
 
-export interface EditablePattern {
-  id: string | null;
-  name: string;
-  type: "box" | "trapezoid";
-  durations: number[];
-  boxDuration?: number;
-}
+export type EditablePattern = Omit<Pattern, "id"> & { id: string | null };
 
 export interface Visualization {
   id: string;

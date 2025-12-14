@@ -599,6 +599,72 @@ button {
   /* Content goes here */
 }
 
+/* Confirm Dialog */
+.confirm-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.confirm-icon--warning {
+  background: rgba(168, 212, 230, 0.15);
+}
+
+.confirm-icon--danger {
+  background: rgba(232, 196, 184, 0.15);
+}
+
+.confirm-title {
+  font-family: "Fraunces", serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.confirm-description {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-btn--primary {
+  background: linear-gradient(135deg, var(--color-inhale), #5fb8a5);
+  color: var(--bg-primary);
+  font-weight: 600;
+}
+
+.modal-btn--secondary {
+  background: var(--border-light);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.modal-btn--danger {
+  background: linear-gradient(135deg, var(--color-hold2), #d4a69a);
+  color: var(--bg-primary);
+  font-weight: 600;
+}
+
 /* Visualization Picker Options */
 .viz-option {
   display: flex;
@@ -631,6 +697,155 @@ button {
   font-size: 20px;
   background: var(--bg-input);
   border-radius: var(--radius-sm);
+}
+
+.viz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.viz-content {
+  flex: 1;
+}
+
+.viz-name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.viz-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.viz-check {
+  color: var(--color-inhale);
+}
+
+/* Box Slider */
+.box-slider {
+  padding: 16px 0;
+}
+
+.box-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.box-slider-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 400;
+  transition: all 0.2s;
+}
+
+.box-slider-label--active {
+  color: var(--color-inhale);
+  font-weight: 600;
+}
+
+.box-slider-track-wrapper {
+  position: relative;
+  height: 40px;
+}
+
+.box-slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border-light);
+  border-radius: 2px;
+  transform: translateY(-50%);
+}
+
+.box-slider-track-active {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  background: var(--color-inhale);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  transition: width 0.2s;
+}
+
+.box-slider-tick {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.box-slider-summary {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.box-slider-value {
+  color: var(--color-inhale);
+  font-weight: 600;
+}
+
+/* Duration Stepper */
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border-radius: 12px;
+}
+
+.stepper-label {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.stepper-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepper-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--border-light);
+  color: var(--text-primary);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+}
+
+.stepper-value {
+  width: 40px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Editor Labels */
+.editor-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 8px;
 }
 
 /* Input Fields */
